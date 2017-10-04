@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Compile & Link</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp">
+    <div ng-controller="firstController">
+        <!--1. div change to dom structure-->
+        <!--2. then search custom directive. The default priority is 0. so which one define first then execute first-->
+
+        <div ng-repeat="user in users" custom-tags="abcryrhyr" custom-tags2>
+            <!--because ng-repeat it repeats two times. So in the console it run two times-->
+        </div>
+    </div>
+</div>
+
+<script>
+    var i = 0;
+    angular.module("myApp", [])
+        .directive('customTags', function () {
+            return {
+                template: '<div>{{ user.name }}</div>',
+                replace: true,
+                // transclude: true,
+                compile: function (tElement, tAttrs, transclude) {
+                    console.log("tElement:", tElement);
+                    console.log("tAttrs:", tAttrs);
+                    console.log(transclude);
+                    tElement.append(angular.element('<div>{{ user.name }}' + '{{ user.count }}</div>')); // change DOM structure in compile
+                    console.log('customTags compile phase ...');
+
+                    return {
+                        // after compile phase but before directive link to sub element
+                        // it means it links to custom-tags not link to custom-tags2
+                        pre: function preLink(scope, iElement, iAttrs, controller) {
+                            console.log('customTags preLink ...')
+                        },
+                        // execution after all sub elements' directives link together
+                        post: function postLink(scope, iElement, iAttrs, controller) {
+                            iElement.on('click', function () {
+                                scope.$apply(function () {
+                                    scope.user.name = 'click after';
+                                    scope.user.count = ++i;
+                                    // do once dirty checking
+                                });
+                            });
+                            console.log('customTags all child directive link ...')
+                        }
+                    }
+                    // just return postLink
+                    // return postLink function () {
+                    // console.log('compile return fun');
+                    // }
+                },
+                // This link is just the postLink
+                link: function () {
+                    iElement.on('click', function () {
+                        scope.$apply(function () {
+                            scope.user.name = 'click after';
+                            scope.user.count = ++i;
+                            // do once dirty checking
+                        });
+                    })
+                }
+            }
+        })
+    
+        .directive('customTags2', function () {
+            return {
+                restrict: 'ECMA',
+                replace: true,
+                compile: function () {
+                    // compile phase ...
+                    console.log('customTags2 compile phase ...');
+
+                    return {
+                        // before directive link to sub element
+                        pre: function preLink() {
+                            console.log('customTags2 preLInk ...')
+                        },
+                        // execution after all sub elements' directives link together
+                        post: function postLink() {
+                            console.log('customTags2 all child directive link ...')
+                        }
+                    }
+                }
+            }
+        })
+    
+        .directive('customTags3', function () {
+            // return postLink;
+            return function () {
+                
+            }
+        })
+    
+        .controller('firstController', ['$scope', function ($scope) {
+            $scope.users = [
+                {
+                    id: 10,
+                    name: 'Jerry'
+                },
+                {
+                    id: 20,
+                    name: 'Tom'
+                },
+                {
+                    id: 30,
+                    name: 'landlord'
+                }
+            ];
+        }]);
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Controllers</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl1">
+        {{ msg }}<br />
+        {{ name }} (rootScope)
+    </div>
+
+    <div ng-controller="myCtrl2">
+        {{ msg }} <br />
+        {{ myName }} <br />
+        {{ name }} (rootScope)
+    </div>
+
+<script>
+    var myApp = angular.module("myApp", []);
+    myApp.controller("myCtrl1", function ($scope, $rootScope) {
+        $scope.msg = "Hello, World!";
+        $rootScope.name = "I'm John.";
+        console.log($scope);
+    })
+
+    myApp.controller("myCtrl2", function ($scope, $rootScope) {
+        $scope.msg = "Aha!";
+        $scope.myName = $rootScope.name;
+        console.log($scope);
+    })
+
+</script>
+</body>
+</html>

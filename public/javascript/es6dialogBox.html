@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMAScript 6 Dialog Box</title>
+    <!--Bootstrap 4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row-justified">
+        <h2 class="alert alert-success col-lg-5">Hello<span id="myText"></span></h2>
+    </div>
+</div>
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-lg" onclick="alertbox()">Alert Box</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-lg" onclick="confirmbox()">Confirm Box</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-lg" onclick="promptbox()">Prompt Box</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-lg" onclick="window.print()">Print Page</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        let alertbox = () => { alert('How are you today?') };
+
+        let confirmbox = () => {
+            let ans = confirm('Do you want to go to w3schools.com?');
+            if (ans) {
+                location = 'https://www.w3schools.com';
+            }
+        };
+
+        let promptbox = () => {
+            let ans = prompt('What is your name?');
+            if(ans){
+                document.getElementById('myText').innerHTML = `, ${ans}!`;
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Coding Practise 01</title>
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<script>
+    // Date Format Conversion
+    let formatDate = (userDate) => {
+        // format from M/D/YYYY to YYYYMMDD
+//        var month = userDate.charAt(0) + userDate.charAt(1);
+//        var day = userDate.charAt(3) + userDate.charAt(4);
+//        var year = userDate.charAt(6) + userDate.charAt(7) + userDate.charAt(8) + userDate.charAt(9);
+        let month = userDate.slice(0, 2); // start, end
+        let day = userDate.substring(3, 5); // start, end
+        let year = userDate.substr(6, 4);  // start, length
+        return year + month + day;
+    };
+    console.log('Date Format Conversion :');
+    console.log(formatDate("12/31/2014"));
+
+    // Delete obj property
+    let removeProperty = (obj, prop) => {
+        if(obj){
+            delete obj[prop];
+        } else {
+            return false;
+        }
+    };
+    let myCar = {
+        name: 'BMW',
+        color: 'black'
+    };
+    console.log('Delete Object\'s property :');
+    console.log(myCar);
+    removeProperty(myCar, 'color');
+    console.log(myCar);
+</script>
+
+</body>
+</html>

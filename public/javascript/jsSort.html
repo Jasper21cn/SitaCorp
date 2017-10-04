@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort</title>
+</head>
+<body>
+<p>Bubble Sort</p>
+<div id="bubble"></div>
+
+<p>Selection Sort</p>
+<div id="selection"></div>
+
+<p>Insert Sort</p>
+<div id="insert"></div>
+
+<p>Merge Sort</p>
+<div id="merge"></div>
+
+<p>Quick Sort</p>
+<div id="quick"></div>
+
+<script>
+    function bubbleSort(arr){
+        var result=[];
+        return result;
+    }
+
+    function swap(x, y, arr){
+        var result=arr;
+        var value=arr[x];
+        if(arr[x]<arr[y]){
+
+        }
+    }
+
+    function selectionSort(arr){
+
+    }
+
+    function insertSort(arr){
+        var tempArr01 = [arr[0]];
+        var tempArr02 = arr.shift();
+
+        console.log(tempArr02);
+    }
+
+    function mergeSort(arr){
+        var tempArr01 = [];
+        var tempArr02 = [];
+//        for (var i=0; i<(arr.length/2)-1; i++){
+//            tempArr01.push(arr[i]);
+//        }
+        return arr[0];
+    }
+
+    function quickSort(arr){
+
+    }
+
+    var testArr = [5,3,8,10,6,1, 0];
+    document.getElementById("bubble").innerHTML = bubbleSort(testArr);
+    document.getElementById("selection").innerHTML = selectionSort(testArr);
+    document.getElementById("insert").innerHTML = insertSort(testArr);
+    document.getElementById("merge").innerHTML = mergeSort(testArr);
+    document.getElementById("quick").innerHTML = quickSort(testArr);
+
+
+</script>
+
+</body>
+</html>

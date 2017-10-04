@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Filer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <style>
+        table {
+            width: 500px;
+            border-collapse: collapse;
+        }
+        th,td {
+            width: 20px;
+            border: 1px solid black;
+        }
+        strong {
+            color: red;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <p><strong>Time Filters</strong></p>
+        mediumDate: {{ today | date: 'mediumDate' }} <br />
+        short: {{ today | date : 'short' }} <br />
+        mediumTime: {{ today | date : 'mediumTime' }} <br />
+    </div>
+    <div ng-controller="myCtrl2">
+        <p><strong>Search</strong></p>
+        <p><input type="text" ng-model="search" /></p>
+        <table>
+            <tbody>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+            <tr ng-repeat="x in records | filter : search">
+                <td>{{ x.Name }}</td>
+                <td>{{ x.City }}</td>
+                <td>{{ x.Country }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-controller="myCtrl3">
+        <ul>
+            <li ng-repeat="user in data | filter: filterName">{{ user }}</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+        $scope.today = new Date();
+        setInterval(function (){
+            $scope.$apply(function () {
+                $scope.today = new Date();
+            })
+        }, 1000)
+    });
+    
+    app.service('searchService', function () {
+        return {
+            records: [
+                {
+                    Name: "Alfreds Futterkiste",
+                    City: "Berlin",
+                    Country: "Germany"
+                },
+                {
+                    Name: "Ana Trujillo Emparedados y helados",
+                    City: "México D.F.",
+                    Country: "Mexico"
+                },
+                {
+                    Name: "Antonio Moreno Taquería",
+                    City: "México D.F.",
+                    Country: "Mexico"
+                },
+                {
+                    Name: "Around the Horn",
+                    City: "London",
+                    Country: "UK"
+                },
+                {
+                    Name: "B's Beverages",
+                    City: "London",
+                    Country: "UK"
+                },
+                {
+                    Name: "Berglunds snabbköp",
+                    City: "Luleå",
+                    Country: "Sweden"
+                },
+                {
+                    Name: "Blauer See Delikatessen",
+                    City: "Mannheim",
+                    Country: "Germany"
+                },
+                {
+                    Name: "Blondel père et fils",
+                    City: "Strasbourg",
+                    Country: "France"
+                },
+                {
+                    Name: "Bólido Comidas preparadas",
+                    City: "Madrid",
+                    Country: "Spain"
+                },
+                {
+                    Name: "Bon app'",
+                    City: "Marseille",
+                    Country: "France"
+                },
+                {
+                    Name: "Bottom-Dollar Marketse",
+                    City: "Tsawassen",
+                    Country: "Canada"
+                },
+                {
+                    Name: "Cactus Comidas para llevar",
+                    City: "Buenos Aires",
+                    Country: "Argentina"
+                },
+                {
+                    Name: "Centro comercial Moctezuma",
+                    City: "México D.F.",
+                    Country: "Mexico"
+                },
+                {
+                    Name: "Chop-suey Chinese",
+                    City: "Bern",
+                    Country: "Switzerland"
+                },
+                {
+                    Name: "Comércio Mineiro",
+                    City: "São Paulo",
+                    Country: "Brazil"
+                }
+            ]
+        }
+    });
+    
+    app.controller('myCtrl2', function ($scope, searchService) {
+        $scope.records = searchService.records;
+    });
+    
+    app.service('Data', function () {
+        return [
+            {name: 'Jerry', age: '20', city: 'New York'},
+            {name: 'Tom', age: '30', city: 'Chicago'}
+        ]
+    });
+
+    app.filter('filterName', function () {
+        return function (name) {
+            var result = [];
+            angular.forEach(name, function (obj) {
+                if(obj.name == 'Tom'){
+                    result.push = [obj];
+                }
+            });
+            return result;
+        }
+    });
+    
+    app.controller('myCtrl3', function ($scope, myFilter) {
+        $scope.user = myFilter.user;
+    })
+</script>
+
+</body>
+</html>

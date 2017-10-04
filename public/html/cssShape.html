@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Shape Practices</title>
+    <style>
+        .rec, .arc {
+            display: inline-block;
+        }
+        .rec {
+            width: 150px;
+            height: 60px;
+            border: 1px solid black;
+            border-right: 0;
+            background-color: orangered;
+        }
+        .arc {
+            position: absolute;
+            left: 130px;
+            height: 60px;
+            width: 30px;
+            border-radius: 60px 0 0 60px;
+            border: 1px solid black;
+            border-right: 0;
+            background-color: #FFFFFF;
+
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="rec"></div>
+<div class="arc"></div>
+
+</body>
+</html>

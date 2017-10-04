@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMAScript 6 Closure</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-lg" onclick="myCount()">Count Number</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-lg" onclick="reset()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="alert display-4 col-md-3 btn-info myText">0</div>
+    </div>
+</div>
+
+<script>
+    let count = 1;
+    let closure = () => {
+        return () => {
+            return count++;
+        }
+    };
+    let myCount = () => {
+        document.getElementsByClassName('myText')[0].innerHTML = closure()();
+    };
+    let reset = () => {
+        count = 1;
+        document.getElementsByClassName('myText')[0].innerHTML = 0;
+    };
+</script>
+</body>
+</html>

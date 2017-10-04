@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS $Provide</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp">
+    <!--<div ng-controller="firstController">-->
+        <!--{{ name }}-->
+    <!--</div>-->
+
+    <div ng-controller="secondController">
+        first.data <input type="text" ng-model="data.name" />
+        <!--first.Data <input type="text" ng-model="Data.message" />-->
+        <!--<p>first-message: {{ Data.message }}</p>-->
+    </div>
+
+    <div ng-controller="thirdController">
+        <p>second-name: {{ data.name }}</p>
+        <!--<p>second-message: {{ Data.message }}</p>-->
+    </div>
+</div>
+
+<script>
+//    var myApp = angular.module('myApp', [], function($provide){
+        //when module run, it wil execute this function
+
+        //do Custom service using $provide.provider()
+//        $provide.provider('CustomService', function () {
+//            this.$get = function () {
+//                return {
+//                    message: "CustomService Message"
+//                    //The return value can get inject into an controller and then show out.
+//                }
+//            }
+//        });
+
+//        $provide.provider('CustomService2', function () {
+//            this.$get = function () {
+//                return {
+//                    message : "CustomService2 Message"
+//                }
+//            }
+//        });
+
+        // Use Service
+//        $provide.service('CustomService', function () {
+//            return ['Service', 'Message'];
+//        });
+//
+//        $provide.factory('CustomService2', function () {
+//            return ["Factory", "Message"];
+//        });
+
+//        myApp.controller('firstController', function ($scope, CustomService, CustomService2) {
+//            $scope.name = 'Jerry';
+//            Console.log(CustomService);
+//            Console.log(CustomService2);
+//        });
+        var myApp = angular.module("myApp", []);
+        myApp.controller('secondController', function ($scope) {
+            $scope.data = {
+                name: 'Jerry'
+            };
+            console.log($scope);
+//            $scope.Data = Data; // automatically injection
+        });
+
+
+        myApp.controller('thirdController', function ($scope) {
+            $scope.data = $scope.$$prevSibling.data; // Here is a reference
+//            $scope.Data = Data;
+        });
+
+        // Two ways to sharing data. One is using factory
+        // Another way is sing scope chain
+//    })
+</script>
+</body>
+</html>

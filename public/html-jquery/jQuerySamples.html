@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Samples</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<ul>
+    <li>First</li>
+    <li>Second</li>
+    <li>Third</li>
+</ul>
+
+
+<script>
+    $('ul').on('click','li',function(e){
+        console.log(this);
+    });
+
+    $.each([5, 10], function (index, value){
+        console.log(index + " : " + value);
+    });
+
+    var a = [1, 2, 3, 4];
+    $.inArray(4, a);
+
+    var o1 = {p1:'a', p2:'b'};
+    var o2 = {p1:'c'};
+    $.extend(o1, o2);
+    console.log(o1.p1);
+
+    var obj1 = {
+        apple: 0,
+        banana: {weight:52, price:100},
+        cherry: 97
+    };
+    var obj2 = {
+        banana: {price: 200},
+        durian: 100
+    };
+    var obj3 = $.extend({}, obj1, obj2); // true for deep copy, no true word for shallow copy, (not support for using false)
+    console.log(JSON.stringify(obj3));
+    //{"apple":0,"banana":{"price":200},"cherry":97,"durian":100} for shallow copy, only point to the second obj
+    //{"apple":0,"banana":{"weight":52,"price":200},"cherry":97,"durian":100} for deep copy
+
+//    class Point {
+//        constructor(x, y){
+//            this.x = x,
+//                this.y = y
+//        }
+//        toString(){
+//            return '('+this.x+','+this.y+')';
+//        }
+//    }
+//    var point = new Point(2, 3);
+//    point.toString();
+//    point.hasOwnProperty('x');
+//    point.hasOwnProperty('y');
+//    point.hasOwnProperty('toString');
+
+    'use strict';
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var Point = function () {
+        function Point(x, y) {
+            _classCallCheck(this, Point);
+
+            this.x = x, this.y = y;
+        }
+
+        _createClass(Point, [{
+            key: 'toString',
+            value: function toString() {
+                return '(' + this.x + ',' + this.y + ')';
+            }
+        }]);
+
+        return Point;
+    }();
+
+    var point = new Point(2, 3);
+    point.toString();
+    point.hasOwnProperty('x');
+    point.hasOwnProperty('y');
+    point.hasOwnProperty('toString');
+</script>
+</body>
+</html>

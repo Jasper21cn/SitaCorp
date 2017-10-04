@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Practice</title>
+
+    <style>
+        div.container {
+            width: 70%;
+            padding: 10px;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+        header, footer {
+            padding: 1em;
+            color: white;
+            clear: both;
+        }
+        header {
+            background-color: purple;
+            text-align: left;
+        }
+        footer {
+            background-color: pink;
+            text-align: center;
+            clear: both;
+        }
+        nav, article, aside {
+            display: inline-block;
+        }
+        nav {
+            width: 140px;
+            margin: 0;
+            padding: 1em;
+            float: left;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        nav ul li {
+            background-color: green;
+            margin-top: 5px;
+            padding: 10px;
+        }
+        nav ul a {
+            text-decoration: none;
+            color: yellow;
+        }
+        article {
+            width: 350px;
+            padding: 1em;
+            overflow: hidden;
+        }
+        aside {
+            width: 200px;
+            margin: 1em;
+            float: right;
+            background-color: green;
+            color: yellow;
+            text-align: center;
+        }
+        @media screen and (max-width: 480px){
+            nav, article, aside {
+                display: block;
+                float: left;
+                clear: both;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Victoria, BC, Canada</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="">The City</a></li>
+            <li><a href="">Climate & Weather</a>
+            <li><a href="">Culture & History</a></li>
+            <li><a href="">Transportation & Maps</a></li>
+        </ul>
+    </nav>
+
+    <article>
+        <h1>Victoria, the capital city of British Columbia</h1>
+        <p>The area is also home to some of the country's most exhilarating scenery: there's an ocean or mountain (or
+            both!) vista around every corner, and the city's flower gardens are famous the world over.</p>
+    </article>
+
+    <aside>
+        <h3>What?</h3>
+        <p>Something interesting about BC</p>
+
+        <h3>Where?</h3>
+        <p>Let's find out where to go</p>
+
+        <h3>How?</h3>
+        <p>Here we have some trip ideas for you</p>
+    </aside>
+
+    <footer>
+        <p>2017 &copy; Jiangnan Cao. All Rights Reserved.</p>
+    </footer>
+
+</div>
+</body>
+</html>

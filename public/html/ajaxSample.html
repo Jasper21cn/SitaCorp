@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Sample</title>
+</head>
+<body>
+
+<div>Click the button to show picture by making an Ajax Call.</div>
+<br />
+<br />
+<input type="button" value="Show Content" onclick="ajaxLoad('ajaxRes.txt', contentFunc)" style="margin: 0 1em;" />
+<input type="button" value="Clear Content" onclick="ajaxClear()" style="margin: 0 1em;" />
+<br />
+<div id="itemHere"></div>
+
+<script>
+    //Using callback function
+    function ajaxLoad(url, func) {
+        var xhttp; //creating the XMLHttpRequest object
+        //check if browser supports the XMLHttpRequest object
+        if (window.XMLHttpRequest){
+            xhttp = new XMLHttpRequest();
+        } else {
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP"); //like IE5 or 6
+        }
+        xhttp.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200) {
+                contentFunc(xhttp);
+            }
+        };
+        xhttp.open("GET", "ajaxRes.txt", true);
+        xhttp.send();
+    }
+    function contentFunc(xhttp) {
+        document.getElementById("itemHere").innerHTML = xhttp.responseText + xhttp.getAllResponseHeaders();
+    }
+    function ajaxClear() {
+        document.getElementById("itemHere").innerHTML = "";
+    }
+</script>
+
+</body>
+</html>

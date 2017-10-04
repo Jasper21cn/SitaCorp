@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Table by JavaScript</title>
+</head>
+<body>
+
+<div class="myTable"></div>
+
+<script>
+    var table = document.createElement('table');
+    var tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+
+    var rows = 10;
+    var cols = 5;
+    for(var i=0; i<rows; i++){
+        var rowcount = i + 1;
+        tbody.insertRow(i);
+
+        for(var j=0; j<cols; j++){
+            tbody.rows[i].insertCell(j);
+            tbody.rows[i].cells[j].appendChild(document.createTextNode('Row '+rowcount+', Cell '+j));
+            tbody.rows[i].cells[j].style.border = "1px solid black";
+        }
+
+    }
+    table.createCaption();
+    table.createCaption().appendChild(document.createTextNode('A DOM-Generated Table'));
+    document.getElementsByClassName("myTable")[0].appendChild(table);
+
+    table.style.border = "1px solid black";
+    table.style.borderCollapse = "collapse";
+</script>
+
+</body>
+</html>

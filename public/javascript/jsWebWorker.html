@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Web Worker</title>
+</head>
+<body>
+<script id="worker" type="app/worker">
+    addEventListener('message', function() {
+      postMessage('Work done!');
+    }, false);
+</script>
+
+<script>
+    (function () {
+        var blob = new Blob([document.querySelector('#worker').textContent]);
+        var url = window.URL.createObjectURL(blob);
+        var worker = new Worker(url);
+
+        worker.addEventListener('message', function (e) {
+            console.log(e.data);
+        }, false);
+
+        worker.postMessage('');
+    })();
+</script>
+</body>
+</html>

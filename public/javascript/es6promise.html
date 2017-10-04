@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMAScript 6 Promise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--Here we use Bootstap 3-->
+<div class="container">
+    <h2 class="alert alert-info">ECMAScript 6 Promise Example</h2>
+    <form action="#" class="alert alert-success form-horizontal">
+        <div class="form-group">
+            <label for="num1" class="control-label col-sm-2">First Number:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="num1" placeholder="Please enter the first number">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="num2" class="control-label col-sm-2">Second Number:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="num2" placeholder="Please enter the second number">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-3">
+                <button class="btn btn-default" type="submit" onclick="getResult()">Submit</button>
+            </div>
+        </div>
+    </form>
+    <div class="alert alert-danger">
+        <h4>Result:</h4>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function division (a, b) {
+        let isValid = () => {
+            return (a <= 0 || b <= 0);
+        };
+        let promise = new Promise(function (resolve, reject) {
+            isValid() ?
+                 reject(Error('Not valid. Must be positive numbers.')) : resolve (a / b);
+        });
+        return promise;
+    }
+    function getResult(){
+        let x = document.getElementById('num1').value;
+        let y = document.getElementById('num2').value;
+        division(x, y).
+        then(function (result) {
+            document.getElementsByTagName('h4')[0].innerHTML = `${x} + ${y} = ${result}`;
+            console.log(`${x} + ${y} = ${result}`);
+        }, function (error) {
+            document.getElementsByTagName('h4')[0].innerHTML = error.toString();
+            console.log(error);
+        });
+    }
+    console.log('ES6 Promise');
+</script>
+</body>
+</html>

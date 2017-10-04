@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tooltip</title>
+    <style>
+        div {
+            content: " ";
+            width: 1px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+
+        div::before {
+            content: "Downward Tooltip Arrow Example \A";
+            white-space: pre;
+            color: cornflowerblue;
+            font-family: Georgia Tahoma Serif;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+
+</body>
+</html>

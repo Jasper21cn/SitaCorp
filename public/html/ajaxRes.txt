@@ -1,0 +1,12 @@
+<br />
+<hr>
+<p>
+<span style="color:cornflowerblue;font-size:1.5em;">AJAX is a developer's dream, because you can:</span>
+<ul>
+<li>Read data from a web server - after the page has loaded</li>
+<li>Update a web page without reloading the page</li>
+<li>Send data to a web server - in the background</li>
+</p>
+<p>
+<img src='../jpg/ajax-logo.jpg' alt='myPic'/>
+</p>

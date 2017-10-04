@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Form Sample</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl">
+
+    <select ng-model="selectState" ng-options="info.state as info.city for info in data">
+    </select>
+
+    <p ng-repeat="item in data | filter : selectState">
+        {{ item.state }} : {{ item.city }}
+    </p>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', ['$scope', function ($scope) {
+        $scope.data = [
+            {
+                "state" : "New York",
+                "city" : "Manhattan"
+            },
+            {
+                "state" : "New Jersey",
+                "city" : "Newark"
+            },
+            {
+                "state" : "Pennsylvania",
+                "city" : "Philadelphia"
+            }
+        ];
+    }]);
+</script>
+</body>
+</html>

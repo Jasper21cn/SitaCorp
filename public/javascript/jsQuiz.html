@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ol>
+</ol>
+
+<script>
+    var ol = document.getElementsByTagName("ol")[0];
+    for(var i=0; i<3; i++){
+        var li = document.createElement("li");
+        ol.appendChild(li);
+        li.appendChild(document.createTextNode("item " + (i+1)));
+    }
+</script>
+
+<script>
+//    function callme(num){
+//        var result = "";
+//        var txt = "ness";
+//        if(num>0){
+//            for(var i=0; i<num; i++){
+//                result += txt;
+//            }
+//        }else if(num=0){
+//            return result;
+//        } else {
+//            result="Error!";
+//        }
+//        console.log(result);
+//    }
+//    console.log(callme(3));
+
+    function callme(num){
+        var arr = [];
+        for(var i=0; i<num; i++){
+            arr.push('ness');
+        }
+        var ans = arr.join('');
+        console.log(ans);
+    }
+    callme(3);
+</script>
+
+<script>
+    var o1 = {a:1};
+    var o2 = new Object(o1);
+    console.log(o1 === o2); //True
+</script>
+
+<script>
+    var foo = [];
+    for(var i=0; i<10; i++){
+        foo[i] = function () {
+            return i;
+        }
+    }
+    console.log(foo[0]());
+</script>
+
+</body>
+</html>

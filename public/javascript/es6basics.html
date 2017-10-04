@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getting know to ES6</title>
+</head>
+<body>
+
+
+<script>
+    // ES 5
+    console.log('ECMAScript 5 declaring variables with var :');
+    var a = [];
+    for(var i=0; i<10; i++){
+        a[i] = function () {
+            console.log(i); // Actual execution. all a[x] point to the last i value which is 10
+        };
+    }
+    a[4]();
+
+    // ES 6
+    console.log('ECMAScript 6 declaring variables with let :');
+    var b = [];
+    for(let i=0; i<10; i++){
+        b[i] = function () {
+            console.log(i); // Using let make i become new again and only available to the current round. So every a[x] points to different i values
+        };
+    }
+    b[5]();
+
+    // Hoisting
+    console.log('ES5 hoisting :');
+    console.log(c);
+    var c = 1; // Undefined
+    console.log('ES6 hosing :');
+    //console.log(d);
+    //let d = 1; // Reference Error
+
+    // Block Level of let
+    console.log('Block level of let :');
+    let e = 1;
+    if(true){
+        let e = 10;
+        console.log(e);
+    }
+    console.log(e);
+
+    // ES6 const
+    console.log('Const :');
+    const myValue = 8;
+    console.log(myValue);
+//    myValue = 2;
+//    console.log(myValue); // const value is immutable
+
+    // Block level of const
+    console.log('Block level of const :');
+    const f = 1;
+    if(true){
+        const f = 3;
+        console.log(f);
+    }
+    console.log(f); // same as let
+
+    // Spread Operator
+    console.log('Spread Operator');
+    let piece = [2, 4, 5];
+    console.log(...piece);
+
+    // Set
+    console.log('Set :');
+    const mySet = new Set();
+    [1,2,3,4,5].forEach(x => mySet.add(x)); // Add method
+    [1,6].forEach(x => mySet.add(x)); // each value is unique and no duplicates in set comparing to array
+    console.log(mySet);
+    console.log(mySet.has(3));
+    mySet.delete(6)
+    console.log(mySet);
+    for(let item of mySet){
+        console.log(item);
+    }
+    let myArr = Array.from(mySet); // Convert from set to array
+    console.log(myArr);
+
+    // Map
+    console.log('Map :');
+    const myMap = new Map().set('true', 1).set({1:'apple'}, 'hello');
+    // Traversing a map using the for…of loop
+    for(let i of myMap.entries()){
+        console.log(`${i[0]} : ${i[1]}`);
+    }
+    console.log([...myMap]); // Convert map to array by spread operator
+
+    // Class
+    console.log('Class :');
+    class Car {
+        constructor(name) {
+            this.name = name;
+        }
+        toString(){
+            console.log('My car is ' + this.name);
+        }
+    }
+    let myCar = new Car('Benz');
+    myCar.toString();
+    class carDetails extends Car {
+        constructor(name, color){
+            super(name);
+            this.color = color;
+        }
+        toString(){
+            console.log('I have a ' + this.color + ' ' + this.name);
+        }
+    }
+    let myCar02 = new carDetails('Benz', 'black');
+    myCar02.toString();
+
+    // Iterator
+    console.log('Iterator :');
+    let set = ['a', 'b', 'c'];
+    let iter = set.entries();
+    console.log(iter.next());
+    console.log(iter.next());
+    console.log(iter.next());
+    console.log(iter.next());
+
+    // Arrow Function
+    console.log('Arrow function: ');
+    let b1 = 'Raining...';
+    console.log(b1);
+    let myArrFun = () => {
+        let b1 = 'Sunny!';
+        console.log(b1);
+    }
+    myArrFun();
+
+    // Loop
+    console.log('Loop: ')
+    outerloop: // This is the label name
+        for (var i = 0; i < 5; i++) {
+            console.log("Outerloop: " + i);
+            innerloop:
+                for (var j = 0; j<5; j++) {
+                    if (j>3 ) break;
+
+                    // Quit the innermost loop
+                    if (i == 2) break innerloop;
+
+                    // Do the same thing
+                    if (i == 4) break outerloop; // Quit the outer loop
+                    console.log("Innerloop: " + j);
+                }
+        }
+
+    // Object De-structuring
+    // To extract data from arrays or objects into distinct variables
+    console.log('\nObject De-structuring :');
+    let emp = { name: 'John', Id: 3 };
+    let {name, Id} = emp;
+    console.log(emp);
+    console.log(name);
+    console.log(Id);
+
+    // Date
+    let today = new Date();
+    // Template literal ${} with backticks
+    console.log(`Today is ${today.getMonth()}/${today.getDate()}/${today.getFullYear()}.`);
+
+    // Math
+    console.log('Math Object :');
+    // Returns the cube root of a number
+    console.log(`The cube root of 27 is ${Math.cbrt(27)}`);
+    // Returns square root of the sum of the arguments
+    console.log(`The square root of 3 and 4 is ${Math.hypot(3, 4)}`);
+    // Ceiling vs floor
+    console.log(`The ceiling of 5.5 is ${Math.ceil(5.5)}`);
+    console.log(`The floor of 5.5 is ${Math.floor(5.5)}`);
+    console.log(`The integral part of 5.5 is ${Math.trunc(5.5)}`);
+    console.log(`The smallest number in 3, 0.1, -2 is ${Math.min(3, 0.1, -2)}`);
+
+
+</script>
+</body>
+</html>

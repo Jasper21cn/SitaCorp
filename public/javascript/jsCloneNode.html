@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+<div>
+    <img src="" width="300px" height="200px" onclick="makeCopy()" alt="img" style="vertical-align: top;margin: 5px;"/>
+    <div style="width:350px;height:200px;display:inline-block;vertical-align: top;margin: 5px;">
+        <h1>Hello World</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        <input type="button" value="Learn More" />
+        <input type="button" value="Contact Us" />
+    </div>
+</div>
+
+<script>
+    function makeCopy() {
+        var original = document.getElementsByTagName("DIV")[0];
+        var cln = original.cloneNode(true);
+        document.body.appendChild(cln);
+    }
+</script>
+</body>
+</html>

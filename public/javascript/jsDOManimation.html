@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .bg {
+            width: 500px;
+            height: 500px;
+            background-color: cornflowerblue;
+            position: relative;
+        }
+        .ball {
+            content: "";
+            border-radius: 50px;
+            border: 50px solid tomato;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+    <button class="btn" onclick="moveBall()">Move the ball</button>
+</p>
+
+<div class="bg">
+    <div class="ball"></div>
+</div>
+
+<script>
+    function moveBall() {
+        var elem = document.getElementsByClassName("ball")[0];
+        var pos = 0;
+        var id = setInterval(frame, 5);
+        function frame() {
+            if(pos==400){
+                clearInterval(id);
+            }else{
+                pos++;
+                elem.style.top = pos + "px";
+                elem.style.left = pos + "px";
+            }
+        }
+    }
+    document.querySelectorAll("button.btn")[0].style.backgroundColor = "darkgrey";
+    document.querySelectorAll("button.btn")[0].style.color = "white";
+    document.querySelectorAll("button.btn")[0].style.height = "2em";
+    document.querySelectorAll("button.btn")[0].style.fontSize = "1.5em";
+</script>
+
+</body>
+</html>

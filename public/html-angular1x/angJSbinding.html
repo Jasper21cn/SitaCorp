@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data-Binding</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app="" ng-init="fname='John'; lname='Cao';">
+
+    <p style="color:red;">One Way Binding Example</p>
+    <p style="font-size: 1.5em;">First Name:</p>
+    <p>{{ fname }}</p>
+    <p style="font-size: 1.5em;">Last Name:</p>
+    <p ng-bind="lname"></p>
+
+    <br />
+
+    <p style="color:red;">Two Way Binding Example</p>
+    <p><input ng-model="myInput" /></p>
+    <p>{{ myInput }}</p>
+    <p>One Time Binding: &nbsp;{{ ::myInput }}</p>
+
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Custom Directive Scope</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="firstController">
+    {{ books }} <!-- this is parents -->
+    <div book-list books="books" parent-books="books" parent-title="{{ title }}"></div>
+</div>
+
+<script>
+    angular.module('myApp', [])
+        .directive('bookList', function () {
+            return {
+                restrict: 'ECAM',
+                controller: function ($scope) {
+                    // $books
+                     $scope.books = $scope.a();
+
+                    // =books;
+                    // $scope.books = $scope.b;
+                    // $scope.b.push({ name: 'node.js'});
+
+                    //console.log($scope.c);
+                },
+
+                // when scope as an object it also creates an isolate scope
+                scope: {
+                    // Encodes the parent's property book as a function called a()
+                    a:'$books'
+                    // books is not the parent
+                    // but is a [property of the current directive.
+                    // It reflects to the HTML page
+
+                    // Two way data binding b = parentBooks
+                    // b:'=parentBooks'
+                    // using primitive type so cannot use books
+                    // because here book is an object
+                    // it is one way binding
+                    //c:'@parentTitle'
+                },
+                controllerAs: 'bookListController',
+                template: '<div><ul><li ng-repeat="book in books">' +
+                '{{ book.name }}</li></ul></div>',
+                replace: true
+            }
+        })
+        .controller('firstController', ['$scope', function ($scope) {
+            console.log($scope);
+            $scope.books = [
+                {
+                    name: 'HTML5'
+                },
+                {
+                    name: 'CSS3'
+                },
+                {
+                    name: 'JavaScript'
+                }
+            ];
+            $scope.title = "Tom";
+        }]);
+</script>
+</body>
+</html>

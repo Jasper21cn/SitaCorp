@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multimedia Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Verdana, Georgia, Serif;
+        }
+        .flex-container {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            width: 500px;
+            height: 100%;
+            background-color: lightgrey;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .flex-item {
+            background-color: cornflowerblue;
+            width: 120px;
+            height: 20px;
+            margin: 5px;
+            text-align: center;
+            color: #FFFFFF;
+            border-radius: 5px;
+            box-sizing:border-box;
+        }
+        .flex-item:hover {
+            cursor: pointer;
+            background-color: #FFFFFF;
+            border: 1px solid cornflowerblue;
+            color: cornflowerblue;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        @media screen and (max-width: 480px) {
+            .flex-container {
+                flex-direction: column;
+                width: 130px;
+                background-color: #FFFFFF;
+            }
+            .flex-item {
+                background-color: tomato;
+                color: #FFFFFF;
+            }
+            .flex-item:hover {
+                background-color: #FFFFFF;
+                color: tomato;
+                border: 1px solid tomato;
+            }
+            body {
+                background-color: lightpink;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!--<h2 style="display: none">YouTube Video Sample</h2>-->
+<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/y29-VtYecLQ?autoplay=1&controls=0" frameborder="0" allowfullscreen style="display:none;"></iframe>-->
+
+<img src="http://a57.foxnews.com/images.foxnews.com/content/fox-news/auto/2017/01/31/what-will-apple-car-look-like/_jcr_content/par/featured-media/media-1.img.jpg/876/493/1485863352238.jpg?ve=1&tl=1" width="500px" height="281px" />
+
+<div class="flex-container">
+    <div class="flex-item">Introduction</div>
+    <div class="flex-item">Specification</div>
+    <div class="flex-item">Build It</div>
+    <div class="flex-item">Price</div>
+</div>
+
+</body>
+</html>

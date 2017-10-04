@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div ng-app="myApp" style="margin-top: 20px;">
+<form name="myForm" class="container form-horizontal" ng-controller="firstController">
+    <div class="form-group" ng-class="{'has-error': myForm.myInput.$dirty && myForm.myInput.$invalid }">
+        <label class="col-sm-2 control-label">UserName</label>
+        <div class="col-sm-10">
+            <input type="text" name="username" class="form-control"
+                   placeholder="UserName"
+                   ng-model="username" ng-required="true" ng-minlength="6"
+                   ng-maxlength="12"
+                   ng-pattern="/^[a-zA-Z]{1}/" />
+            <div ng-show="myForm.username.$error.minlength"
+                 class="alert alert-danger help-block">
+                UserName's length cannot less than 6
+            </div>
+            <div ng-show="myForm.username.$error.pattern"
+                 class="alert alert-danger help-block">
+                UserName must start in letter
+            </div>
+        </div>
+
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" name="email" class="form-control"
+                   placeholder="Email"
+                   ng-model="email" ng-required="true" />
+            <div ng-show="myForm.email.$error.required"
+                 class="alert alert-danger help-block">
+                Email is required
+            </div>
+            <div ng-show="myForm.email.$error.email"
+                 class="alert alert-danger help-block">
+                Invalid Email
+            </div>
+        </div>
+
+        <label class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" name="password" class="form-control"
+                   placeholder="Password"
+                   ng-model="password" ng-required="true"
+                   ng-minlength="6"
+                   ng-maxlength="20"
+                   ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"/>
+            <div ng-show="myForm.password.$error.required"
+                 class="alert alert-danger help-block">
+                Password is required
+            </div>
+            <div ng-show="myForm.password.$error.pattern"
+                 class="alert alert-danger help-block">
+                Minimum eight characters, at least one letter and one number
+            </div>
+        </div>
+
+        <label class="col-sm-2 control-label">Confirm Password</label>
+        <div class="col-sm-10">
+            <input type="password" name="confirmPassword" class="form-control"
+                   placeholder="Confirm Password"
+                   ng-model="confirmPassword" ng-required="true" />
+            <div ng-show="myForm.confirmPassword.$error.required"
+                 class="alert alert-danger help-block">
+                Please confirm your password
+            </div>
+            <div ng-show="myForm.confirmPassword !== myForm.password"
+                 class="alert alert-danger help-block">
+                Password doesn't match
+            </div>
+        </div>
+
+        <label class="col-sm-2 control-label">URL</label>
+        <div class="col-sm-10">
+            <input type="url" name="url" class="form-control"
+                   placeholder="URL"
+                   ng-model="url" ng-required="true"
+                   ng-pattern="/(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/" />
+            <div ng-show="myForm.url.$error.required"
+                 class="alert alert-danger help-block">
+                Please enter an url
+            </div>
+            <div ng-show="myForm.url.$error.pattern"
+                 class="alert alert-danger help-block">
+                Invalid URL.
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("firstController", function ($scope) {
+        $scope.username = "Johnson";
+        $scope.email = "123@abc.com";
+        $scope.password = "";
+        $scope.confirmPassword = "";
+        $scope.url = "";
+    });
+</script>
+
+</div>
+</body>
+</html>

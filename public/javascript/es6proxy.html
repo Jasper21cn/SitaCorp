@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMAScript 6 Proxy</title>
+</head>
+<body>
+
+<script>
+    // Proxy
+    console.log('Proxy');
+    // Proxy works a 'block' before target
+    //    let target = {};
+    //    let handler = {false: 'sun'};
+    //    let proxy = new Proxy(target, handler);
+    //    proxy.a= 5;
+    //    console.log(target.a);
+
+    console.log('Proxy Get Method:');
+    // Get method used to intercept a property of the read operation
+    let user = { name : 'James' };
+    let proxy = new Proxy(user, {
+        get:function (target, property) {
+            if (property in target) {
+                return target[property];
+            } else {
+                throw new ReferenceError('Property \"' + property + '\" does not exist.');
+            }
+        }
+    });
+    console.log(proxy.name);
+    //    console.log(proxy.age);     // It will throw the customized reference error
+
+    console.log('Proxy Has Method:');
+    let user01 = { abc : 'Hi' };
+    let proxy01 = new Proxy(user01, {
+        has: function (target, property) {
+            console.log('Called: ' + property);
+        }
+    });
+    // HAS hides the property from IN operator
+    console.log('Hi' in proxy01); // Will show false
+
+    // Apply method is used to trap function call
+    console.log('Proxy apply method:');
+    function addition(num1, num2) {
+        return num1 + num2;
+    }
+    let proxy02 = new Proxy(addition, {
+        apply: function(target, thisArg, argumentsList) {
+            return argumentsList[0] * argumentsList[1];
+        }
+    });
+    console.log(proxy02(1, 2)); // It will give 2 (1*2) instead of 3 (1+2)
+
+    console.log('Proxy construct method');
+    // Construct method is used to intercept 'new' command
+    function test(a, b){
+        return a + b;
+    }
+    let p = new Proxy(test, {
+        construct: function(target, args, newTarget) {
+            console.log('called: ' + args.join(', '));
+            return { value: args[0] * 10 }; // must return an object otherwise it will throw an error
+        }
+    });
+    console.log(new p(1,2).value);
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 5 Image Map</title>
+</head>
+<body>
+    <div>
+        <img src="../jpg/image-map.jpg" width="500px" alt="image-map sample" usemap="#myMap" />
+        <map name="myMap">
+            <area shape="circle" coords="50, 50, 30" href="" onclick="alert('Circle!')" alt="circle" />
+            <area shape="rect" coords="0, 250, 200, 100" href="" onclick="alert('Rect!')" alt="Rectangle" />
+            <area shape="poly" coords="200,100, 230,80, 330,20, 400,150, 420,250, 300,200, 200,230, 200,100" href="" onclick="alert('Polygon!')" alt="Polygon" /> <!-- x1,y1, x2, y2, ... pairs -->
+        </map>
+    </div>
+
+
+</body>
+</html>

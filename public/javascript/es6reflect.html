@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMAScript 6 Reflect</title>
+</head>
+<body>
+
+<script>
+    let myObj = {
+        apple : 1,
+        banana : 2,
+        orange : 0
+    };
+    console.log(Reflect.get(myObj, 'orange'));
+    Reflect.set(myObj, 'orange', 3);
+    console.log(myObj);
+    Reflect.deleteProperty(myObj, 'orange');
+    console.log(myObj);
+
+    // Construct
+    console.log('Reflect construct method');
+    function car(name) {
+        console.log('My car is ' + name);
+    }
+    // With 'new'
+    let car1 = new car('BMW');
+    // Without 'new'
+    let car2 = Reflect.construct(car, ['Benz']);
+
+    // getPrototypeOf method
+    let checkProto = Reflect.getPrototypeOf(String.prototype);
+    console.log(checkProto);
+</script>
+</body>
+</html>
