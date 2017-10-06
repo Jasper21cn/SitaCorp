@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    // Find the total count of non-repeating characters in a string
+    function getNonRepeatTotal(str){
+        let myMap = new Map();
+        let total = 0;
+        for(let i=0; i<str.length; i++){
+            let char = str.charAt(i).toLowerCase();
+            myMap.has(char)? myMap.set(char, (myMap.get(char) + 1)) : myMap.set(char, 1);
+        }
+        for(let r of myMap.entries()){
+            if(r[1]===1){
+                total++;
+            }
+        }
+        return total;
+    }
+    console.log(getNonRepeatTotal('helloha'));
+</script>
+</body>
+</html>

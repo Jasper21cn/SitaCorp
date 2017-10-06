@@ -22,14 +22,14 @@
             $scope.hello = 'hello, this is #a!';
         })
         .controller('bController', function ($scope) {
-            $scope.hello = 'hello, this is #b, delaying 1s!';
+            $scope.hello = 'hello, this is #b, delaying 3s!';
         })
         .controller('myCtrl', function ($scope, $location) {
             $scope.$on('$viewContentLoaded', function () { //when new url finish loading, it will tell the myCtrl
                 console.log('ng-view content loaded!');
             });
-            $scope.$on('$roueChangeStart', function (event, next, current) {
-                // when url chnages it will tell myCtrl
+            $scope.$on('$routeChangeStart', function (event, next, current) {
+                // when url changes it will tell myCtrl
                 // event.preventDefault(); // cancel url change
                 console.log('route change start!');
             });
