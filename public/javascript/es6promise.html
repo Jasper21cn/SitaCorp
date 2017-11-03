@@ -41,11 +41,9 @@
 <script type="text/javascript">
     let division = (a, b) => {
         return new Promise(function (resolve, reject) {
-            if(Number(b) !== 0) {
-                resolve ( Number(a) / Number(b) );
-            } else {
+            (Number(b) !== 0) ?
+                resolve ( Number(a) / Number(b) ) :
                 reject(new Error("Not valid. Denominator cannot be zero."));
-            }
         });
     };
     let getResult =() => {
