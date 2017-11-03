@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ECMAScript 6 Promise</title>
+    <title>ECMAScript 6 Promise Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -10,17 +10,19 @@
 </head>
 <body>
 <!--Here we use Bootstap 3-->
+<div class="alert page-header alert-info">
+    <h2>Fraction Division</h2>
+</div>
 <div class="container">
-    <h2 class="alert alert-info">ECMAScript 6 Promise Example</h2>
     <form action="#" class="alert alert-success form-horizontal">
         <div class="form-group">
-            <label for="num1" class="control-label col-sm-2">First Number:</label>
+            <label for="num1" class="control-label col-sm-2">Nominator:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="num1" placeholder="Please enter the first number">
             </div>
         </div>
         <div class="form-group">
-            <label for="num2" class="control-label col-sm-2">Second Number:</label>
+            <label for="num2" class="control-label col-sm-2">Denominator:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="num2" placeholder="Please enter the second number">
             </div>
@@ -37,28 +39,27 @@
 </div>
 
 <script type="text/javascript">
-    function division (a, b) {
-        let isValid = () => {
-            return (a <= 0 || b <= 0);
-        };
-        let promise = new Promise(function (resolve, reject) {
-            isValid() ?
-                 reject(Error('Not valid. Must be positive numbers.')) : resolve (a / b);
+    let division = (a, b) => {
+        return new Promise(function (resolve, reject) {
+            if(Number(b) !== 0) {
+                resolve ( Number(a) / Number(b) );
+            } else {
+                reject(new Error("Not valid. Denominator cannot be zero."));
+            }
         });
-        return promise;
-    }
-    function getResult(){
+    };
+    let getResult =() => {
         let x = document.getElementById('num1').value;
         let y = document.getElementById('num2').value;
         division(x, y).
-        then(function (result) {
-            document.getElementsByTagName('h4')[0].innerHTML = `${x} + ${y} = ${result}`;
-            console.log(`${x} + ${y} = ${result}`);
-        }, function (error) {
-            document.getElementsByTagName('h4')[0].innerHTML = error.toString();
+        then((result) => {
+            document.getElementsByTagName('h4')[0].innerHTML = `${x} / ${y} = ${result}`;
+            console.log(`${x} / ${y} = ${result}`);
+        }, (error) => {
+            document.getElementsByTagName('h4')[0].innerHTML = error;
             console.log(error);
         });
-    }
+    };
     console.log('ES6 Promise');
 </script>
 </body>
