@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        AngularJs Sort Table Columns Example
+    </title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("ngtableApp", ["ngTable"]);
+        app.controller("ngtableCtrl", function ($scope, $filter, NgTableParams) {
+            $scope.users = [
+                { name: "Madhav Sai", age: 10, location: 'Nagpur' },
+                { name: "Suresh Dasari", age: 30, location: 'Chennai' },
+                { name: "Rohini Alavala", age: 29, location: 'Chennai' },
+                { name: "Praveen Kumar", age: 25, location: 'Bangalore' },
+                { name: "Sateesh Chandra", age: 27, location: 'Vizag' },
+                { name: "Siva Prasad", age: 38, location: 'Nagpur' },
+                { name: "Sudheer Rayana", age: 25, location: 'Kakinada' },
+                { name: "Honey Yemineni", age: 7, location: 'Nagpur' },
+                { name: "Mahendra Dasari", age: 22, location: 'Vijayawada' },
+                { name: "Mahesh Dasari", age: 23, location: 'California' },
+                { name: "Nagaraju Dasari", age: 34, location: 'Atlanta' },
+                { name: "Gopi Krishna", age: 29, location: 'Repalle' },
+                { name: "Sudheer Uppala", age: 19, location: 'Guntur' },
+                { name: "Sushmita", age: 27, location: 'Vizag' }
+            ];
+            $scope.usersTable = new NgTableParams({
+                page: 1,
+                count: 5
+            }, {
+                total: $scope.users.length,
+//                NgTable version 1.0.0, the formatting of getData has changed
+//                getData: function ($defer, params) {
+//                    $scope.data = params.sorting() ? $filter('orderBy')($scope.users, params.orderBy()) : $scope.users;
+//                    $scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+//                    $defer.resolve($scope.data);
+//                }
+                getData: function (params) {
+                    $scope.data = params.sorting() ? $filter('orderBy')($scope.users, params.orderBy()) : $scope.users;
+                    $scope.data = $scope.data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    return $scope.data;
+                }
+            });
+        });
+    </script>
+</head>
+<body ng-app="ngtableApp">
+<div ng-controller="ngtableCtrl">
+    <h2>AngularJS ng-table Sorting Example</h2>
+    <table ng-table ="usersTable" class="table table-bordered table-striped">
+        <tr ng-repeat="user in data">
+            <td data-title="'Name'" sortable="'name'">{{user.name}}</td>
+            <td data-title="'Age'" sortable="'age'">{{user.age}}</td>
+            <td data-title="'Location'" sortable="'location'">{{user.location}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
