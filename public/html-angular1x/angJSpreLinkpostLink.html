@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compile vs Link</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('app', []);
+        function createDirective(name) {
+            return function () {
+                return {
+                    restrict: 'E',
+                    compile: function (tElem, tAttrs) {
+                        console.log(name + ': compile');
+                        return {
+                            pre: function (scope, iElem, attrs) {
+                                console.log(name + ': pre link');
+                            },
+                            post: function (scope, iElem, attrs) {
+                                console.log(name + ': post link');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        app.directive('levelOne', createDirective('level-One'));
+        app.directive('levelTwo', createDirective('level-Two'));
+        app.directive('levelThree', createDirective('level-Three'));
+    </script>
+</head>
+<body ng-app="app">
+
+    <level-one>
+        <level-two>
+            <level-three>
+                Hello {{name}}
+            </level-three>
+        </level-two>
+    </level-one>
+
+</body>
+</html>
