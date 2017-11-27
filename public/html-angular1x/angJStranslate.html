@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Internalization</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.16.0/angular-translate.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="TranslateController">
+    <h1>{{ 'TITLE' | translate }}</h1>
+    <p>{{ 'PARA' | translate }}</p>
+    <button ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"></button>
+    <button ng-click="changeLanguage('de')" translate="BUTTON_LANG_DE"></button>
+</div>
+
+<script>
+    var app = angular.module('myApp', ['pascalprecht.translate']);
+    app.config(function ($translateProvider) {
+        $translateProvider.translations('en', {
+            TITLE: 'Hello',
+            PARA: 'This is a paragraph.',
+            BUTTON_LANG_EN: 'english',
+            BUTTON_LANG_DE: 'german'
+        })
+        .translations('de', {
+            TITLE: 'Hallo',
+            PARA: 'Dies ist ein Paragraph.',
+            BUTTON_LANG_EN: 'englisch',
+            BUTTON_LANG_DE: 'deutsch'
+        });
+//setting default language
+        $translateProvider.preferredLanguage('en');
+    });
+    app.controller('TranslateController', function ($translate, $scope) {
+        $scope.changeLanguage = function (langKey) {
+            $translate.use(langKey);
+        };
+    });
+</script>
+</body>
+</html>
