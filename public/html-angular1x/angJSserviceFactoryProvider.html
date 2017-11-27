@@ -47,13 +47,13 @@
     });
     //configuring provider
     app.config(function (configurableProvider) {
-        configurableProvider.setName("Saksham Chauhan");
+        configurableProvider.setName("Jonathan Cao");
     });
     //defining controller
     app.controller('myController', function ($scope, myService, myFactory,
                                              configurable) {
-        $scope.serviceName = myService.setName("Saksham Chauhan");
-        myFactory.setName("Saksham Chauhan");
+        $scope.serviceName = myService.setName("Jonathan Cao");
+        myFactory.setName("Jonathan Cao");
         $scope.factoryName = myFactory.name;
         $scope.providerName = configurable.name;
     });

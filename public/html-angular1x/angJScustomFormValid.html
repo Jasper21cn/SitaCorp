@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+
+<form name="userForm" ng-submit="submitForm()" novalidate>
+    <!-- Password -->
+    <div>
+        <label>Password</label>
+        <input type="Password" name="password" ng-required="true" ng-model="user.password">
+        <span ng-show="userForm.password.$invalid">Your password is required.</span>
+    </div>
+    <!-- Confirm Password -->
+    <div>
+        <label>Confirm Password</label>
+        <input type="Password" name="confirmPassword" ng-compare="password" ngrequired="
+true" ng-model="user.confirmPassword" >
+        <span ng-show="userForm.confirmPassword.$error.compare &&
+!userForm.confirmPassword.$error.required">Confirm password doesn’t match.</span>
+    </div>
+    <!-- Other code has been removed for clarity-->
+</form>
+
+<script>
+    //defining module
+    var myapp = angular.module('myapp', []);
+    //creating custom directive
+    myapp.directive('ngCompare', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, currentEl, attrs, ctrl) {
+                var comparefield = document.getElementsByName(attrs.ngCompare)[0]; //getting first element
+                compareEl = angular.element(comparefield);
+                //current field key up
+                currentEl.on('keyup', function () {
+                    if (compareEl.val() != "") {
+                        var isMatch = currentEl.val() === compareEl.val();
+                        ctrl.$setValidity('compare', isMatch);
+                        scope.$digest();
+                    }
+                });
+                //Element to compare field key up
+                compareEl.on('keyup', function () {
+                    if (currentEl.val() != "") {
+                        var isMatch = currentEl.val() === compareEl.val();
+                        ctrl.$setValidity('compare', isMatch);
+                        scope.$digest();
+                    }
+                });
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
