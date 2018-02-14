@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMAScript 6 Inheritance</title>
+</head>
+<body>
+
+<script>
+    // Base class
+    class Shoes {
+        constructor (category, price) {
+            this.category = category;
+            this.price = price;
+        }
+
+        description() {
+            console.log("This " + this.category + " shoes is " + this.price);
+        }
+    }
+
+    // Sub class
+    class Myshoes extends Shoes {
+        constructor (category, price) {
+            super(category, price);
+        }
+    }
+
+    // Sub class object
+    let myshoes = new Myshoes('Basketball', '$80');
+    myshoes.description();
+
+</script>
+
+</body>
+</html>
