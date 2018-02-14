@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map and Set in ECMAScript 6</title>
+</head>
+<body>
+
+<script>
+    // map elements must be key-value pair. can use array with 2 elements
+    const map = new Map([
+        ['Sunny', 0],
+        ['Rainy', 1]
+    ]);
+
+    // set is chainable
+    map.set(true, 'yes').set(false, 'no');
+
+    // Iterate the map
+    // - Can use keys(), values(), or entries()
+    for (let item of map.entries()){
+        console.log(item[0], item[1]);
+    }
+    // - Or a better way
+    for (let [key, value] of map) {
+        console.log(key, value);
+    }
+    // - Or use forEach(value, key, map)
+    // Note: value goes first in parameters!
+    map.forEach((value, key) => {console.log(key, value)});
+
+    // Convert map to array
+    console.log([...map]);
+
+    // no filter method for map. Instead, convert map to array first then apply filter
+    const map1 = new Map([
+        [1, 'a'], [2, 'b']
+    ]);
+    let filteredMap1 = new Map([...map1].filter(([k, v]) => k === 2));
+    filteredMap1.forEach((value, key) => {console.log(key, value)});
+
+    // Same for using map(). Convert first then  apply map()
+    let mappedMap = new Map([...map1].map(([k, v]) => [k * 2, '_' + v]));
+    mappedMap.forEach((value, key) => {console.log(key, value)});
+
+    // delete(key) to delete the entry which has the key
+    mappedMap.delete(2);
+    mappedMap.forEach((value, key) => {console.log(key, value)});
+
+    // clear() to remove all entries from map
+    console.log(mappedMap.clear());
+
+    // Set methods are similar to Map
+    const a = new Set([2,3,4]);
+    const b = new Set([3,5,7]);
+    // Convert to array then filter to get result, then convert back to Set
+    const intersection = new Set(
+        [...a].filter(
+            (x) => b.has(x)
+        )
+    );
+    // find differences in two sets then catenate them
+    const difference = new Set([
+        ...[...a].filter((x) => !b.has(x)),
+        ...[...b].filter((x) => !a.has(x))
+    ]);
+    intersection.forEach((v) => console.log(v));
+    difference.forEach((v) => console.log(v));
+
+    myFun();
+    function myFun() {
+        console.log('hello');
+    }
+
+</script>
+</body>
+</html>

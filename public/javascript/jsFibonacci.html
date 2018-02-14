@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fibonacci sequence algorithm in Javascript</title>
+</head>
+<body>
+
+<p>Given a number N return the index value of the Fibonacci sequence, where the sequence is: </p>
+<h3>1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...</h3>
+<p>After a quick look, you can easily notice that the pattern of the sequence is that each value is the sum of the 2 previous values, that means that for N=5 → 2+3 or in maths:</p>
+<h3>F(n) = F(n-1) + F(n-2)</h3>
+
+<script>
+    // Easy one
+    function fibonacciOne(num) {
+        var a=1, b=0, temp, n = num;
+        while (num>=1) {
+            temp = a;
+            a = a + b;
+            b = temp;
+            num--;
+        }
+        console.log("The " + n + "th number is: " + b);
+    }
+    fibonacciOne(6);
+
+    // Recursion
+    function fibonacciTwo(n) {
+        return n < 1 ? 0
+            : n <= 2 ? 1
+                : fibonacciTwo(n - 1) + fibonacciTwo(n - 2);
+    }
+    console.log(`The 6th number is: ${fibonacciTwo(6)}`);
+
+    // Recursion and generate an array result
+    let fibonacci = number => Array.from({ length: number }).reduce(
+            (acc, cur, i) => acc.concat(
+                i > 1 ? acc[i - 1] + acc[i - 2] : i
+            ), []
+        );
+    console.log("The fibonacci sequence with 10 numbers is ", fibonacci(10));
+</script>
+
+</body>
+</html>

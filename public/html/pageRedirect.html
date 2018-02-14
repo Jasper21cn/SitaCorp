@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;URL='https://www.w3schools.com/'" />
+    <title>Title</title>
+</head>
+<body>
+
+<p>This page has moved to a <a href="https://www.w3schools.com/">
+    https://www.w3schools.com/</a>.</p>
+
+<input type="date" name="myDate" id="date">
+<button type="submit" onclick="myFunction()">Show Date</button>
+<h3></h3>
+
+<script>
+    function myFunction() {
+        var date = document.getElementById('date').value;
+        document.getElementsByTagName('h3')[0].innerHTML = date;
+    }
+</script>
+
+</body>
+</html>

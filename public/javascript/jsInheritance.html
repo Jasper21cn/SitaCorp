@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript ES5 Inheritance</title>
+</head>
+<body>
+
+<script>
+    // Constructor
+    function Shoes(category, price) {
+        this.category = category;
+        this.price = price;
+    }
+
+    // Add method to its prototype
+    Shoes.prototype.description = function () {
+        console.log("This " + this.category + " shoes is " + this.price);
+    };
+
+    // Myshoes constructor
+    function Myshoes(category, price) {
+        Shoes.call(this, category, price);
+    }
+
+    // Inheritance
+    Myshoes.prototype = Object.create(Shoes.prototype);
+    Myshoes.prototype.constructor = Myshoes;
+
+    // Now let's try
+    var myshoes = new Myshoes('basketball', '$80');
+    console.log(myshoes.category);
+    console.log(myshoes.price);
+    myshoes.description();
+
+</script>
+
+</body>
+</html>

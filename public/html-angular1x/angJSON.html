@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular with JSON</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .container {
+            margin-top: 30px;
+        }
+    </style>
+
+</head>
+<body ng-app="myApp">
+<div class="container" ng-controller="myCtrl">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="bg-success" ng-repeat="item in key">{{ item["name"] | lowercase | limitTo: 3 }}</div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+    myApp.controller('myCtrl', function ($scope) {
+        var data = {
+            "key1":{
+                "name": "XXXX"
+            },
+            "key2":{
+                "name": "YYYY"
+            },
+            "key3":{
+                "name": "ZZZZ"
+            }
+        };
+        $scope.key = data;
+    })
+    
+</script>
+</body>
+
+</html>

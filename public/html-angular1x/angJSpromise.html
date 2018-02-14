@@ -2,45 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AngularJS Promise</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 </head>
 <body>
 
-<div ng-app="myApp">
-    <ng-view></ng-view>
-</div>
 
-<script>
-    var myApp = angular.module('myApp', ['ngRoute']);
-    myApp.config(function ($routeProvider) {
-        $routeProvider
-            .when('/a',
-                {
-                    templateUrl: '28myApp.html',
-                    controller: 'firstController'
-                }
-            )
-    });
-    myApp.controller('firstController', function ($scope, $q) {
-        var defer = $q.defer();
-        defer.promise.then(function (food) {
-            alert('You can eat my ' + food)
-            return ('salad')
-        })
-            .then(function (food) {
-                alert('And my ' + food)
-                return('ice cream')
-            })
-            .then(function (food) {
-                alert('And my ' + food)
-            })
-        defer.resolve('pizza');
-        $scope.model = {
-            message: 'This is my App!'
-        }
-    });
-</script>
 </body>
 </html>
