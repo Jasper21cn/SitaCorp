@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #outside {
+            margin: 10px;
+            width: 150px;
+            height: 70px;
+            border: 1px solid black;
+            position: relative;
+        }
+        #inner {
+            width: 30px;
+            height: 30px;
+            border: 1px solid red;
+            position: absolute;
+            margin: 0;
+            top: 50%;
+            left: 50%;
+            /*Key setting: using translate*/
+            transform: translate(-50%, -50%);
+        }
+        #outbox {
+            margin: 10px;
+            width: 150px;
+            height: 70px;
+            border: 1px solid green;
+            /*Key setting: line-height equal to height*/
+            line-height: 70px;
+            text-align: center;
+        }
+        #inbox {
+            width: 30px;
+            height: 30px;
+            border: 1px solid red;
+            /*Make it center*/
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>Using <em>transform</em> to center</h2>
+<div id="outside">
+    <div id="inner"></div>
+</div>
+
+<hr>
+
+<h2>Using <em>line-height</em> to center</h2>
+<div id="outbox">
+    <div id="inbox"></div>
+</div>
+
+</body>
+</html>

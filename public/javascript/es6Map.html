@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // Double elements in an array
+    // Generically add a method
+    Array.prototype.double = function() {
+        return this.map(ele =>ele * 2);
+    };
+    console.log([1, 2, 3, 4].double());
+
+    // Create a method
+    let doubleEle = (arr) => {
+        return arr.map(ele => ele * 2);
+    };
+    console.log(doubleEle([1,2,3,4]));
+</script>
+
+</body>
+</html>
